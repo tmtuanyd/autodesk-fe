@@ -1,0 +1,6 @@
+.addGeometryBtn {
+  position: absolute;
+  left: 2em;
+  top: 2em;
+  z-index: 1;
+}
