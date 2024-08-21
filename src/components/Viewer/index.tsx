@@ -3,6 +3,7 @@ import { initializeViewer } from "../../utils/initializeViewer";
 import { useAppContext } from "../../contexts/AppProvider";
 import "./viewer.css";
 import { addGeometry } from "../../utils/addGeometry";
+import { EGeometry } from "../../models/Geometry";
 
 interface ViewerProps {
   urn: string;
@@ -37,9 +38,12 @@ const Viewer: React.FC<ViewerProps> = ({ urn }) => {
     <>
       <div id="forgeViewer" style={{ height: "100vh", width: "100%" }}></div>
       {!!viewer && (
-        <button className="addGeometryBtn" onClick={() => addGeometry(viewer)}>
-          Add Geometry
-        </button>
+        <div className="BtnWrapper">
+          <button onClick={() => addGeometry({ viewer })}>Add Sphere</button>
+          <button onClick={() => addGeometry({ viewer, type: EGeometry.Cube })}>
+            Add Cube
+          </button>
+        </div>
       )}
     </>
   );

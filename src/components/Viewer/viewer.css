@@ -1,6 +1,9 @@
-.addGeometryBtn {
+.BtnWrapper {
   position: absolute;
   left: 2em;
   top: 2em;
   z-index: 1;
+  display: flex;
+  gap: 1rem;
+  width: max-content;
 }

@@ -1,9 +1,21 @@
-export const addGeometry = (viewer: Autodesk.Viewing.GuiViewer3D) => {
+import { EGeometry } from "../models/Geometry";
+
+export const addGeometry = ({
+  viewer,
+  type = EGeometry.Sphere,
+}: {
+  viewer: Autodesk.Viewing.GuiViewer3D;
+  type?: EGeometry;
+}) => {
   if (!viewer) {
     return;
   }
-  const customSceneIdentifier = "custom-scene";
-  const geom = new window.THREE.SphereGeometry(10, 10, 10);
+  const geometryObject = {
+    [EGeometry.Sphere]: new window.THREE.SphereGeometry(10, 10, 10),
+    [EGeometry.Cube]: new window.THREE.BoxGeometry(10, 10, 10),
+  };
+  const customSceneIdentifier = "custom-scene-" + type;
+  const geom = geometryObject[type];
   const material = new window.THREE.MeshBasicMaterial({ color: 0xff0000 });
   const sphereMesh = new window.THREE.Mesh(geom, material);
   sphereMesh.position.set(
